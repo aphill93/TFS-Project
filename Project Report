@@ -1,0 +1,13 @@
+To: Yaguo Wang
+From: Andy Chan, Austin Hill, Brian Ong, and Robin Zou
+Date: 
+Subject: Semester Project Phase 1 
+Objective:
+	The University of Texas generates all of its power in house. The objective of this project will be to analyze the generator that the university uses. Because many conditions may change due to weather or air index, we will be creating a computer model that will simulate the generator. Using inputs of compressor pressure ratios, bypass air mass flow percent, parasitic bleed air mass flow percent, compressor efficiencies, turbine efficiencies, generator efficiencies, and firing temperature, our program will output net power output, thermal efficiency, fuel mass flow rate, specific fuel consumption, and heat rate. In addition to these, a full state table will be created for the isentropic and actual states. 
+	
+Procedure:
+	We began our analysis of the turbine by constructing a hand model. By doing so we became familiar with the process of solving the problem, which would make coding much easier. We began with state one, which involved ambient air conditions. Using the property calculator from earlier in the year, we were able to plug in mole fractions, pressure, and temperature to find the enthalpy and entropy for state one. It should be noted that our property calculator used SI units, so we converted all USCS values into SI before proceeding. The only difference between state one and two was a minimal pressure drop of four inches of water, so we went through the same process to tabulate values for state 2. 
+	
+We first calculated the isentropic values for state 25, which we called state 25s. This was done using an iterative function which contained a binary search algorithm. Since the pressure at state 25 was known due to the pressure ratio being given, we used the property calculator and the entropy value to find the temperature associated with the specified pressure and entropy. This was achieved through a binary search algorithm, where we specified a temperature range for searching. The algorithm calculated the entropy at the midpoint of the temperature range, and if it was higher than our desired value, then we would bisect the search range and only search in the lower half of temperatures. If the entropy was lower than our wanted value, then we would know to search in the upper half of temperatures. Through this method we are able to automate the process of looking values up in a thermodynamic property table, which saves time. 
+
+After the temperature at state 25s was found, we were able to use the property calculator to obtain an enthalpy value. Using the efficiency given, which was 0.82 for the low power compressor, we can use the efficiency equation to find an enthalpy value. 
