@@ -12,15 +12,14 @@ P25 = P2*r_p;
 while 1==1
     mTemp = (maxTemp+minTemp)/2;
     test = prop_calc(y(1),y(2),y(3),y(4),y(5),P25,mTemp);
+    if abs(s25s-test.Smix) < .00000001
+        break;
+    end
     if s25s > test.Smix
         minTemp = mTemp;
     end
     if s25s < test.Smix
         maxTemp = mTemp;
     end
-    if s25s == test.Smix
-        break;
-    end
 end
-disp(mTemp);
 result = mTemp;
