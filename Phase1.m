@@ -28,7 +28,8 @@ y_n2 = .735258*(1-y_wv);
 y_co2 = .053356*(1-y_wv);
 y_ar = .012508*(1-y_wv);
 
-whys = [y_o2,y_n2,y_co2,y_wv,y_ar]
+whys = [y_o2,y_n2,y_co2,y_wv,y_ar]'
+whys(1)
 
 % find intital properties
 props1 = prop_calc(y_o2, y_n2, y_co2, y_wv, y_ar, P0S,T0K);
@@ -41,12 +42,13 @@ T2K = T0K;
 T25K_s = binarysearch(whys,T2K,P2S,6)
 props25_s = prop_calc(y_o2, y_n2, y_co2, y_wv, y_ar, P25S, T25K_s);
 h25S_a = (props25_s.h-props2.h)/0.82 + props2.h;
-T25K_a = 
+T25K_a = enthalpy_search(whys,T2K,P25S,h25S_a)
 props25_a = prop_calc(y_o2, y_n2, y_co2, y_wv, y_ar, P25S, T25K_a)
 
 P3S = P25S*4; % r_hpc = 4
-T3K_s = binarysearch(whys,T25S_a,P25S,4)
+T3K_s = binarysearch(whys,T25K_a,P25S,4)
 props3_s = prop_calc(y_o2, y_n2, y_co2, y_wv, y_ar, P3S, T3K_s);
 h3S_a = (props3_s.h-props25_a.h)/0.84 + props25_a.h;
-T3K_a = 
+T3K_a = enthalpy_search(whys,T25K_a,P3S,h3S_a)
 props3_a = prop_calc(y_o2, y_n2, y_co2, y_wv, y_ar, P3S, T3K_a)
+
