@@ -1,0 +1,105 @@
+%Problem E13.13
+
+function HW6 = prob13(x)
+T = x;
+abut = 3.96;
+bbut = 37.15e-2;
+cbut = -18.34e-5;
+dbut = 35e-9;
+aair = 28.11;
+bair = .1967e-2;
+cair = .4802e-5;
+dair = -1.966e-9;
+aco = 22.26;
+bco = 5.981e-2;
+cco = -3.501e-5;
+dco = 7.469e-9;
+awat = 32.24;
+bwat = .1923e-2;
+cwat = 1.055e-5;
+dwat = -3.595e-9;
+ao = 25.48;
+bo = 1.52e-2;
+co = -.7155e-5;
+doo = 1.312e-9;
+an = 28.9;
+bn = -.1571e-2;
+cn = .8081e-5;
+dn = -2.873e-9;
+% hair1 = 476.32;
+% hco1 = 374.82;
+% hwat1 = 881.84;
+% ho1 = 436.01;
+% hn1 = 492.82;
+% mair = 28.97;
+% mbut = 57.124;
+% mco = 44.010;
+% mwat = 18.015;
+% mo = 31.999;
+% mn = 28.013;
+ 
+ 
+ 
+fun = @(x) abut + bbut.*x + cbut.*x.*x + dbut.*x.*x.*x;
+hbut2 = integral(fun,0,T);
+hbut1 = integral(fun,0,473);
+hbutr = integral(fun,0,298);
+%hbut2 = hbut2./mbut;
+%hbut1 = hbut1./mbut;
+ 
+fun1 = @(x) aair + bair.*x + cair.*x.*x + dair.*x.*x.*x;
+hair2 = integral(fun1,0,T);
+hair1 = integral(fun1,0,473);
+hairr = integral(fun1,0,298);
+%hair2 = hair2./mair;
+ 
+fun2 = @(x) aco + bco.*x + cco.*x.*x + dco.*x.*x.*x;
+hco2 = integral(fun2,0,T);
+hco1 = integral(fun2,0,473);
+hcor = integral(fun2,0,298);
+%hco2 = hco2./mco;
+ 
+fun3 = @(x) awat + bwat.*x + cwat.*x.*x + dwat.*x.*x.*x;
+hwat2 = integral(fun3,0,T);
+hwat1 = integral(fun3,0,473);
+hwatr = integral(fun3,0,298);
+%hwat2 = hwat2./mwat;
+ 
+fun4 = @(x) ao + bo.*x + co.*x.*x + doo.*x.*x.*x;
+ho2 = integral(fun4,0,T);
+ho1 = integral(fun4,0,473);
+hor = integral(fun4,0,298);
+%ho2 = ho2./mo;
+ 
+fun5 = @(x) an + bn.*x + cn.*x.*x + dn.*x.*x.*x;
+hn2 = integral(fun5,0,T);
+hn1 = integral(fun5,0,473);
+hnr = integral(fun5,0,298);
+%hn2 = hn2./mn;
+ 
+s = ((-126150 + hbut1 - hbutr) + (9.1).*(hair1 - hairr));
+s2 = ((4.*(-393520 + hco2 - hcor))+(5.*(-241820 + hwat2 - hwatr))+(2.6.*(ho2 - hor))+(34.216.*(hn2 - hnr)));
+sf = s2-s;
+ 
+disp('s =');
+disp(s);
+disp(s2);
+disp(sf);
+ 
+ 
+
+%prob t13.5
+hco3 = integral(fun2,0,573);
+hwat3 = integral(fun3,0,573);
+ho3 = integral(fun4,0,573);
+hn3 = integral(fun5,0,573);
+ 
+p1 = hco3 - hcor;
+p2 = hwat3 - hwatr;
+p3 = ho3 - hor;
+p4 = hn3 - hnr;
+disp(p1);
+disp(p2);
+disp(p3);
+disp(p4);
+
